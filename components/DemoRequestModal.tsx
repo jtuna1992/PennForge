@@ -40,9 +40,7 @@ function validate(values: Record<string, string>): FieldErrors {
  * Demo request modal shared by every CTA on the page.
  * - Client-side validation with accessible, per-field error messages
  * - Honeypot spam field (bots fill it; humans never see it)
- * - Posts to /api/demo-request. Until a real email/CRM provider is wired
- *   up, the API runs in development mode and the success screen says so
- *   plainly — the form never claims a request was "sent" to the business.
+ * - Posts to /api/demo-request; success appears only after email acceptance.
  */
 export function DemoRequestModal() {
   const { isOpen, closeDemo } = useDemoModal();
@@ -58,7 +56,6 @@ export function DemoRequestModal() {
   });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<Status>("idle");
-  const [serverNote, setServerNote] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
@@ -66,7 +63,6 @@ export function DemoRequestModal() {
     // Reset form state on close so every open starts fresh.
     setStatus("idle");
     setErrors({});
-    setServerNote(null);
     closeDemo();
   }, [closeDemo]);
 
@@ -119,7 +115,6 @@ export function DemoRequestModal() {
       if (!res.ok || !data.ok) {
         throw new Error(data.errors?.join(" ") ?? "Submission failed.");
       }
-      setServerNote(data.note ?? null);
       setStatus("success");
     } catch {
       setStatus("error");
@@ -177,15 +172,8 @@ export function DemoRequestModal() {
             </h2>
             <p className="mt-3 leading-relaxed text-slate-300">
               Thanks, {values.fullName.split(" ")[0] || "there"} — your demo request for{" "}
-              {values.businessName || "your business"} is logged.
+              {values.businessName || "your business"} has been sent. We’ll be in touch soon.
             </p>
-            <div className="mt-5 rounded-xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-left text-sm text-amber-200">
-              <p className="font-semibold">Development mode</p>
-              <p className="mt-1 text-amber-200/90">
-                {serverNote ??
-                  "No email or CRM provider is connected yet, so this request was validated but not forwarded anywhere. Connect a provider in app/api/demo-request/route.ts to go live."}
-              </p>
-            </div>
             <button
               type="button"
               onClick={handleClose}

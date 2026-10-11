@@ -21,8 +21,8 @@ export const brand = {
 // Contact & legal placeholders — FILL THESE IN before launch
 // ---------------------------------------------------------------------------
 export const contact = {
-  /** Public contact email shown in footer / final CTA. Placeholder until real one exists. */
-  email: "hello@callforge.example",
+  /** Public contact email shown in footer / final CTA. */
+  email: "CallForge2026@gmail.com",
   /** Optional phone number. Leave empty to hide phone references. */
   phone: "",
 } as const;

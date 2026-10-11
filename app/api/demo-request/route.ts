@@ -1,26 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-/**
- * POST /api/demo-request
- * ----------------------
- * Receives demo-request form submissions.
- *
- * CURRENT STATE: development mode — no email/CRM provider is connected.
- * The route validates the payload (so the UI behaves exactly as it will
- * in production) but does NOT forward the data anywhere. It returns
- * `mode: "development"` so the form can say so honestly.
- *
- * TO GO LIVE:
- *   1. Add your provider SDK / API key as a server-side env var
- *      (e.g. RESEND_API_KEY) — never expose keys to the client.
- *   2. In the handler below, replace the development-mode return with a
- *      call to your provider (Resend, Postmark, HubSpot, etc.).
- *   3. Consider adding rate limiting (e.g. Upstash) and CAPTCHA/Turnstile
- *      for production hardening. A honeypot field is already checked.
- *
- * PRIVACY: never log the request body — it contains PII (name, email,
- * phone). Log only aggregate, non-identifying events.
- */
+/** Sends validated demo requests through Resend. Keep credentials server-side
+ * and never log submitted names, email addresses, phone numbers, or messages. */
 
 type DemoRequestBody = {
   fullName?: unknown;
@@ -35,9 +16,10 @@ type DemoRequestBody = {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+
 function validate(body: DemoRequestBody): string[] {
   const errors: string[] = [];
-  const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
 
   if (!str(body.fullName)) errors.push("Full name is required.");
   if (!str(body.businessName)) errors.push("Business name is required.");
@@ -46,20 +28,28 @@ function validate(body: DemoRequestBody): string[] {
     errors.push("A valid phone number is required.");
   if (!str(body.industry)) errors.push("Industry is required.");
   if (str(body.message).length > 2000) errors.push("Message is too long.");
+  for (const field of ["fullName", "businessName", "phone", "industry", "callVolume"] as const) {
+    if (str(body[field]).length > 200) errors.push(`${field} is too long.`);
+  }
+  if (str(body.email).length > 254) errors.push("Email is too long.");
   return errors;
 }
 
 export async function POST(req: NextRequest) {
   let body: DemoRequestBody;
   try {
-    body = (await req.json()) as DemoRequestBody;
+    const parsed: unknown = await req.json();
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      throw new Error("Invalid payload");
+    }
+    body = parsed as DemoRequestBody;
   } catch {
     return NextResponse.json({ ok: false, errors: ["Invalid request body."] }, { status: 400 });
   }
 
   // Honeypot: bots fill this hidden field — silently accept and discard.
   if (typeof body.company_website === "string" && body.company_website.trim() !== "") {
-    return NextResponse.json({ ok: true, mode: "development" });
+    return NextResponse.json({ ok: true, mode: "production" });
   }
 
   const errors = validate(body);
@@ -67,11 +57,57 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, errors }, { status: 400 });
   }
 
-  // ---- DEVELOPMENT MODE: no provider connected yet ----
-  // Replace this block with your provider call to go live.
-  return NextResponse.json({
-    ok: true,
-    mode: "development",
-    note: "No email or CRM provider is connected yet, so this request was validated but not forwarded anywhere. Connect a provider in app/api/demo-request/route.ts to go live.",
-  });
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM_EMAIL;
+  const to = process.env.DEMO_REQUEST_TO_EMAIL;
+  if (!apiKey || !from || !to || !EMAIL_RE.test(to)) {
+    return NextResponse.json(
+      { ok: false, errors: ["Demo requests are temporarily unavailable. Please try again later."] },
+      { status: 503 },
+    );
+  }
+
+  const text = [
+    "New CallForge demo request",
+    "",
+    `Full name: ${str(body.fullName)}`,
+    `Business: ${str(body.businessName)}`,
+    `Email: ${str(body.email)}`,
+    `Phone: ${str(body.phone)}`,
+    `Industry: ${str(body.industry)}`,
+    `Monthly call volume: ${str(body.callVolume) || "Not provided"}`,
+    "",
+    "Message:",
+    str(body.message) || "Not provided",
+  ].join("\n");
+
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        reply_to: str(body.email),
+        subject: "New CallForge demo request",
+        text,
+      }),
+      signal: AbortSignal.timeout(10000),
+      cache: "no-store",
+    });
+    const result: unknown = await response.json();
+    if (!response.ok || !result || typeof result !== "object" ||
+        !("id" in result) || typeof result.id !== "string" || !result.id) {
+      throw new Error("Email delivery failed");
+    }
+    return NextResponse.json({ ok: true, mode: "production" });
+  } catch {
+    return NextResponse.json(
+      { ok: false, errors: ["Your request could not be sent. Please try again."] },
+      { status: 502 },
+    );
+  }
 }
