@@ -33,8 +33,8 @@ export const legal = {
 } as const;
 
 export const seo = {
-  /** TODO: replace with the production domain before launch. */
-  canonicalUrl: "https://www.callforge.example/",
+  /** Update this when a custom production domain is connected. */
+  canonicalUrl: "https://callforge-landing.vercel.app/",
   siteName: "CallForge",
 };
 
