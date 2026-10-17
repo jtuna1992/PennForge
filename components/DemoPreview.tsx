@@ -223,7 +223,7 @@ export function DemoPreview() {
                       >
                         {line.speaker === "ai" && (
                           <p className="mb-0.5 text-[10px] font-bold tracking-wider text-forge-400 uppercase">
-                            CallForge AI
+                            PennForge AI
                           </p>
                         )}
                         {line.text}

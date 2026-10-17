@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
   }
 
   const text = [
-    "New CallForge demo request",
+    "New PennForge demo request",
     "",
     `Full name: ${str(body.fullName)}`,
     `Business: ${str(body.businessName)}`,
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
         from,
         to: [to],
         reply_to: str(body.email),
-        subject: "New CallForge demo request",
+        subject: "New PennForge demo request",
         text,
       }),
       signal: AbortSignal.timeout(10000),

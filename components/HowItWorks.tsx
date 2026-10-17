@@ -2,7 +2,7 @@ import { howItWorksNote, howItWorksSteps } from "@/lib/site-config";
 import { Reveal } from "./Reveal";
 
 /**
- * Section D — How CallForge Works. Four-step timeline from ringing phone
+ * Section D — How PennForge Works. Four-step timeline from ringing phone
  * to qualified lead, with a qualification note on configuration-dependent
  * features.
  */
@@ -27,7 +27,7 @@ export function HowItWorks() {
           </h2>
           <p className="mt-5 text-lg text-slate-300">
             No new hardware, no app for your customers to download. They call
-            your number — CallForge does the rest.
+            your number — PennForge does the rest.
           </p>
         </Reveal>
 

@@ -44,7 +44,7 @@ export function Navbar() {
         aria-label="Primary"
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
       >
-        <a href="#top" aria-label="CallForge home" className="rounded-md">
+        <a href="#top" aria-label="PennForge home" className="rounded-md">
           <Logo />
         </a>
 
