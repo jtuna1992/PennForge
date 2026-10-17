@@ -18,9 +18,9 @@ const archivo = Archivo({
   display: "swap",
 });
 
-const title = "CallForge — AI Receptionist for Contractors | Never Miss Another Call";
+const title = "PennForge — AI Receptionist for Contractors | Never Miss Another Call";
 const description =
-  "CallForge is the AI-powered phone receptionist for contractors and home-service businesses. 24/7 call answering, lead capture, and appointment scheduling. Turn missed calls into booked jobs.";
+  "PennForge is the AI-powered phone receptionist for contractors and home-service businesses. 24/7 call answering, lead capture, and appointment scheduling. Turn missed calls into booked jobs.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(seo.canonicalUrl),
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 
 /**
  * Structured data: Organization + Product/Offer.
- * No review/aggregate-rating schema — CallForge is pre-launch and we do
+ * No review/aggregate-rating schema — PennForge is pre-launch and we do
  * not invent ratings, reviews, or customer counts.
  */
 function JsonLd() {

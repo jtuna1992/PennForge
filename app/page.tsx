@@ -7,14 +7,14 @@ import { DemoPreview } from "@/components/DemoPreview";
 import { Features } from "@/components/Features";
 import { Industries } from "@/components/Industries";
 import { Pricing } from "@/components/Pricing";
-import { WhyCallForge } from "@/components/WhyCallForge";
+import { WhyPennForge } from "@/components/WhyPennForge";
 import { Faq } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
 import { DemoRequestModal } from "@/components/DemoRequestModal";
 
 /**
- * CallForge landing page — sections A through L.
+ * PennForge landing page — sections A through L.
  * All customer-facing copy is centralized in lib/site-config.ts.
  */
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
         <Features />
         <Industries />
         <Pricing />
-        <WhyCallForge />
+        <WhyPennForge />
         <Faq />
         <FinalCta />
       </main>

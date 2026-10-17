@@ -1,4 +1,4 @@
-/** Visual QA screenshots for the CallForge landing page.
+/** Visual QA screenshots for the PennForge landing page.
  *  Run: node qa-shots.mjs  (requires: npx playwright install chromium) */
 import { chromium } from "playwright";
 

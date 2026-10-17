@@ -1,5 +1,5 @@
 /**
- * Temporary CallForge logo.
+ * Temporary PennForge logo.
  * Angular forge/roof-inspired mark + bold wordmark.
  * Replace the inline SVG with the official logo asset when available —
  * layout and sizing stay the same.

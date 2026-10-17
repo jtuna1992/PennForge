@@ -1,5 +1,5 @@
 /**
- * CALLFORGE — Central Site Configuration
+ * PENNFORGE — Central Site Configuration
  * --------------------------------------
  * Edit everything customer-facing here: brand, copy, pricing, features,
  * industries, FAQs, demo script, and contact/legal placeholders.
@@ -11,7 +11,7 @@
 // Brand
 // ---------------------------------------------------------------------------
 export const brand = {
-  name: "CallForge",
+  name: "PennForge",
   tagline: "Your business is always answering.",
   // Logo is an inline SVG component (components/Logo.tsx) so it can be
   // swapped for the official logo later without touching layout.
@@ -22,7 +22,7 @@ export const brand = {
 // ---------------------------------------------------------------------------
 export const contact = {
   /** Public contact email shown in footer / final CTA. */
-  email: "CallForge2026@gmail.com",
+  email: "PennForge2026@gmail.com",
   /** Optional phone number. Leave empty to hide phone references. */
   phone: "",
 } as const;
@@ -34,8 +34,8 @@ export const legal = {
 
 export const seo = {
   /** Update this when a custom production domain is connected. */
-  canonicalUrl: "https://callforge-landing.vercel.app/",
-  siteName: "CallForge",
+  canonicalUrl: "https://pennforge-landing.vercel.app/",
+  siteName: "PennForge",
 };
 
 // ---------------------------------------------------------------------------
@@ -65,7 +65,7 @@ export const hero = {
   headlineTop: "TURN MISSED CALLS INTO",
   headlineAccent: "BOOKED JOBS.",
   subcopy:
-    "You’re busy getting the job done. CallForge handles the phone — answering customer calls, capturing new leads, and helping schedule appointments, 24/7.",
+    "You’re busy getting the job done. PennForge handles the phone — answering customer calls, capturing new leads, and helping schedule appointments, 24/7.",
   benefits: [
     "Answer Calls 24/7",
     "Capture New Leads",
@@ -107,13 +107,13 @@ export const howItWorksSteps = [
   },
   {
     number: "02",
-    title: "CallForge Answers",
+    title: "PennForge Answers",
     body: "Your AI receptionist greets them professionally, using information about your business.",
   },
   {
     number: "03",
     title: "Details Are Captured",
-    body: "CallForge gathers contact information, service needs, and relevant appointment details.",
+    body: "PennForge gathers contact information, service needs, and relevant appointment details.",
   },
   {
     number: "04",
@@ -174,7 +174,7 @@ export const features = [
   {
     icon: "CalendarCheck",
     title: "Appointment Requests & Scheduling",
-    body: "CallForge can take appointment requests and handle bookings per your configuration.",
+    body: "PennForge can take appointment requests and handle bookings per your configuration.",
   },
   {
     icon: "BookOpen",
@@ -243,7 +243,7 @@ export const industries = [
 // Pricing (Section H) — exact approved offer. Do not add tiers/discounts.
 // ---------------------------------------------------------------------------
 export const pricing = {
-  planName: "CallForge Professional",
+  planName: "PennForge Professional",
   monthlyPrice: 299,
   setupFee: 99,
   overageRate: 0.2,
@@ -262,9 +262,9 @@ export const pricing = {
 } as const;
 
 // ---------------------------------------------------------------------------
-// Why CallForge (Section I)
+// Why PennForge (Section I)
 // ---------------------------------------------------------------------------
-export const whyCallForge = {
+export const whyPennForge = {
   headline: "You Handle the Work. We’ll Handle the Calls.",
   points: [
     {
@@ -297,20 +297,20 @@ export const whyCallForge = {
 // [PLACEHOLDER] so they can be finalized before launch.
 export const faqs = [
   {
-    q: "Will CallForge work with my existing business phone number?",
-    a: "Yes — CallForge is designed to work with your existing business number so customers keep calling the number they already know. [PLACEHOLDER: confirm supported carriers / forwarding method during onboarding.]",
+    q: "Will PennForge work with my existing business phone number?",
+    a: "Yes — PennForge is designed to work with your existing business number so customers keep calling the number they already know. [PLACEHOLDER: confirm supported carriers / forwarding method during onboarding.]",
   },
   {
     q: "Can it answer calls after hours?",
-    a: "Yes. CallForge answers around the clock — evenings, weekends, and holidays — so after-hours callers reach your business instead of voicemail.",
+    a: "Yes. PennForge answers around the clock — evenings, weekends, and holidays — so after-hours callers reach your business instead of voicemail.",
   },
   {
     q: "Can it schedule appointments?",
-    a: "CallForge can take appointment requests and handle bookings according to your configuration. The exact scheduling behavior is set up during onboarding to match how you run your calendar.",
+    a: "PennForge can take appointment requests and handle bookings according to your configuration. The exact scheduling behavior is set up during onboarding to match how you run your calendar.",
   },
   {
     q: "What happens if a customer needs to speak with a real person?",
-    a: "CallForge can transfer calls to you or a team member when a caller needs a human — for example, urgent or sensitive situations you define during setup.",
+    a: "PennForge can transfer calls to you or a team member when a caller needs a human — for example, urgent or sensitive situations you define during setup.",
   },
   {
     q: "Can I customize what the AI says?",
@@ -330,7 +330,7 @@ export const faqs = [
   },
   {
     q: "Will customers know they’re speaking with AI?",
-    a: "CallForge identifies itself appropriately and focuses on helping the caller. [PLACEHOLDER: confirm disclosure wording to match applicable regulations.]",
+    a: "PennForge identifies itself appropriately and focuses on helping the caller. [PLACEHOLDER: confirm disclosure wording to match applicable regulations.]",
   },
 ] as const;
 

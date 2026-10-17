@@ -56,7 +56,7 @@ export function Problem() {
             href="#how-it-works"
             className="mt-6 inline-flex items-center gap-2 rounded-xl border border-forge-500/40 bg-forge-500/10 px-6 py-3 text-sm font-semibold text-forge-300 transition-colors hover:bg-forge-500/20"
           >
-            See how CallForge works
+            See how PennForge works
             <span aria-hidden="true">↓</span>
           </a>
         </Reveal>

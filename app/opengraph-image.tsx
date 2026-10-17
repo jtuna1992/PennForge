@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "CallForge — AI receptionist for contractors";
+export const alt = "PennForge — AI receptionist for contractors";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -36,7 +36,7 @@ export default function Image() {
           >
             CF
           </div>
-          <div style={{ fontSize: 34, fontWeight: 800 }}>CallForge</div>
+          <div style={{ fontSize: 34, fontWeight: 800 }}>PennForge</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>

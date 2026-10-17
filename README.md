@@ -1,6 +1,6 @@
-# CallForge — Landing Page
+# PennForge — Landing Page
 
-Production-quality marketing site for CallForge, the AI-powered phone
+Production-quality marketing site for PennForge, the AI-powered phone
 receptionist for contractors and home-service businesses.
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 ·
@@ -35,7 +35,7 @@ components/
   Features.tsx        # F — 8-feature grid
   Industries.tsx      # G — 6 trade cards
   Pricing.tsx         # H — the one approved plan
-  WhyCallForge.tsx    # I — split value section
+  WhyPennForge.tsx    # I — split value section
   Faq.tsx             # J — accordion
   FinalCta.tsx        # K — closing conversion block
   Footer.tsx          # L — footer
@@ -60,7 +60,7 @@ The form posts to `POST /api/demo-request` and sends a plain-text notification t
 
 Configure these server-side environment variables in Vercel and redeploy:
 - `RESEND_API_KEY`: a Resend key with Sending access.
-- `RESEND_FROM_EMAIL`: a sender on your verified domain, or `CallForge <onboarding@resend.dev>` for testing.
+- `RESEND_FROM_EMAIL`: a sender on your verified domain, or `PennForge <onboarding@resend.dev>` for testing.
 - `DEMO_REQUEST_TO_EMAIL`: the inbox that receives demo requests.
 
 Resend’s test sender can only deliver to the account owner’s email. A verified sending domain is required for other recipients. No visitor confirmation email is sent.
@@ -71,9 +71,9 @@ The existing honeypot silently discards spam. Consider durable rate limiting and
 
 | # | Where | What to provide |
 |---|-------|-----------------|
-| 1 | `lib/site-config.ts` → `contact.email` | Real public contact email (currently `hello@callforge.example`) |
+| 1 | `lib/site-config.ts` → `contact.email` | Real public contact email (currently `hello@pennforge.example`) |
 | 2 | `lib/site-config.ts` → `legal` | Real Privacy Policy + Terms of Service URLs (currently `#`) |
-| 3 | `lib/site-config.ts` → `seo.canonicalUrl` | Production domain (currently `https://www.callforge.example/`) |
+| 3 | `lib/site-config.ts` → `seo.canonicalUrl` | Production domain (currently `https://www.pennforge.example/`) |
 | 4 | `app/layout.tsx` | OG image: add `app/og-image.png` (1200×630) and wire it into `metadata.openGraph.images` |
 | 5 | `lib/site-config.ts` → `faqs` | Finalize the 4 `[PLACEHOLDER]` answers: number porting/carrier support, setup timeline, contract & cancellation policy, AI disclosure wording |
 | 6 | `app/api/demo-request/route.ts` | Configure Resend environment variables (see above) |

@@ -188,7 +188,7 @@ export function DemoRequestModal() {
               Book a Free Demo
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-400">
-              Tell us about your business and we&apos;ll show you CallForge handling
+              Tell us about your business and we&apos;ll show you PennForge handling
               calls like yours.
             </p>
 

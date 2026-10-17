@@ -39,7 +39,7 @@ export function FinalCta() {
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />
             </button>
             <a
-              href={`mailto:${contact.email}?subject=${encodeURIComponent("Question about CallForge")}`}
+              href={`mailto:${contact.email}?subject=${encodeURIComponent("Question about PennForge")}`}
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white transition-colors hover:border-white/40 hover:bg-white/10 sm:w-auto"
             >
               <MessageCircleQuestion size={18} aria-hidden="true" />
